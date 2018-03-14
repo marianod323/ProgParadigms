@@ -29,4 +29,4 @@ semVogaisSem x = filter (`notElem` "aeiouAEIOU") x
 --semVogais :: String -> String
 --semVogais y = filter (\n -> n == "aeiouAEIOU") y
 
--- 5)
+-- 5) teste
