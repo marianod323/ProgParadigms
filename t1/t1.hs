@@ -88,8 +88,8 @@ encodeName plv = map (\n -> encodeAux n) plv
 betterEncodeAux :: Char -> String
 betterEncodeAux x = if (x == 'a') || (x == 'A') then "4" else
                     if (x == 'e') || (x == 'E') then "3" else
-                    if (x == 'i') || (x == 'I') then "2" else
-                    if (x == 'o') || (x == 'O') then "1" else
+                    if (x == 'i') || (x == 'I') then "1" else
+                    if (x == 'o') || (x == 'O') then "0" else
                     if (x == 'u') || (x == 'U') then "00" else [x]
 
 betterEncodeName :: String -> String
