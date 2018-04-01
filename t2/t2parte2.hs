@@ -4,3 +4,9 @@
 
 isBin :: String -> Bool
 isBin str = if head str == '0' || head str == '1' then (if (tail str) == "" then True else isBin (tail str)) else False
+
+-- 2) Reescreva a função acima de forma não-recursiva.
+--    Dê outro nome para ela, por exemplo isBin'. Aqui você pode usar quaisquer funções auxiliares pré-definidas em Haskell.
+
+isBin' :: String -> Bool
+isBin' str = if length (filter (`notElem` "01") str) > 0 then False else True
