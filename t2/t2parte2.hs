@@ -10,3 +10,14 @@ isBin str = if head str == '0' || head str == '1' then (if (tail str) == "" then
 
 isBin' :: String -> Bool
 isBin' str = if length (filter (`notElem` "01") str) > 0 then False else True
+
+-- 3) Encontra-se abaixo a definição parcial da função bin2dec :: [Int] -> Int,
+--    que converte uma lista de 0's e 1's (representando um número binário), em seu equivalente em decimal.
+
+bin2dec :: [Int] -> Int
+bin2dec [] = undefined
+bin2dec bits = auxBin2Dec bits ((length bits)-1)
+
+auxBin2Dec :: [Int] -> Int -> Int
+auxBin2Dec bit (-1) = 0
+auxBin2Dec (x:xs) ept = x * 2 ^ ept + auxBin2Dec xs (ept-1)
