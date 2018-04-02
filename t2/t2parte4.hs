@@ -61,3 +61,6 @@ countChar c str = length (filter (== c) str)
 -- 5) Usando countValids, countChar e percent, defina uma função freqs :: String -> [Float]
 --    que retorne as frequências dos caracteres ['a'..'z'] numa dada string. Use list comprehension.
 --    A frequência de um caracter é dada pelo percentual deste caracter entre os caracteres válidos da string.
+
+freqs :: String -> [Float]
+freqs str = [percent (countChar x str) (countValids str) | x <- ['a'..'z']]
