@@ -38,7 +38,8 @@ chi2 os es = sum [((o-e)^2)/e | (o,e) <- zip os es]
 --    sobre ele, produzindo outro caracter no intervalo ['a'..'z'].
 
 shiftChar :: Char -> Int -> Char
-shiftChar c i = decodeChar (mod (encodeChar (toLower c) + i) 26)
+shiftChar ' ' i = ' '
+shiftChar c i = if (elem c ['a'..'z']) == True then decodeChar (mod (encodeChar (c) + i) 26) else c
 
 -- 2) Usando shiftChar, defina uma função encodeStr :: String -> Int -> String que codifique
 --    uma string usando um dado deslocamento.
@@ -56,3 +57,7 @@ countValids str = length (filter (`elem` ['a'..'z']) str)
 
 countChar :: Char -> String -> Int
 countChar c str = length (filter (== c) str)
+
+-- 5) Usando countValids, countChar e percent, defina uma função freqs :: String -> [Float]
+--    que retorne as frequências dos caracteres ['a'..'z'] numa dada string. Use list comprehension.
+--    A frequência de um caracter é dada pelo percentual deste caracter entre os caracteres válidos da string.
