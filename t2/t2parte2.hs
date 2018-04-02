@@ -38,4 +38,10 @@ dec2binAux :: Int -> [Int]
 dec2binAux 0 = []
 dec2binAux x = (mod x 2) : dec2binAux (div x 2)
 
--- 6)
+-- 6) Implemente uma dessas funções: isHex :: String -> Bool ou hex2dec :: String -> Int ou dec2hex :: Int -> String,
+--    que são semelhantes às dos exercícios anteriores, porém com números hexadecimais no lugar de números binários.
+
+isHex :: String -> Bool
+isHex str = if (head str) == '0' && (head (tail str)) == 'x'
+            && length (filter (`notElem` "012346789ABCDEFabcdef") (tail (tail str))) == 0 
+            then True else False
