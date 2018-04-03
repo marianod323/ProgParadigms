@@ -24,8 +24,8 @@ auxBin2Dec (x:xs) ept = x * 2 ^ ept + auxBin2Dec xs (ept-1)
 
 -- 4) Reescreva a função do exercício anterior de forma não-recursiva, usando funções pré-definidas em Haskell.
 
---bin2dec' :: [Int] -> Int
---bin2dec' bits =
+bin2dec' :: [Int] -> Int
+bin2dec' bits = sum (zipWith (*) (map (\n -> 2^n) [(length bits)-1, (length bits)-2..0]) bits)
 
 -- 5) Crie uma função recursiva dec2bin :: Int -> [Int] que receba um número inteiro positivo e retorne
 --    sua representação em binário, sob forma de uma lista de 0's e 1's. As funções auxiliares autorizadas
@@ -43,5 +43,5 @@ dec2binAux x = (mod x 2) : dec2binAux (div x 2)
 
 isHex :: String -> Bool
 isHex str = if (head str) == '0' && (head (tail str)) == 'x'
-            && length (filter (`notElem` "012346789ABCDEFabcdef") (tail (tail str))) == 0 
+            && length (filter (`notElem` "012346789ABCDEFabcdef") (tail (tail str))) == 0
             then True else False
