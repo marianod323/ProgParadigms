@@ -64,3 +64,9 @@ countChar c str = length (filter (== c) str)
 
 freqs :: String -> [Float]
 freqs str = [percent (countChar x str) (countValids str) | x <- ['a'..'z']]
+
+-- 6) Defina uma função positions :: Float -> [Float] -> [Int], que retorne uma lista de
+--    posições de um dado número em uma lista. Considere que as posições comecem em zero.
+--    Use a função zip como auxiliar no seu código.
+
+-- Não consegui resolver esta.
