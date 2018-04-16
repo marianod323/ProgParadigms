@@ -35,8 +35,9 @@ potenciasAUX(N,L) :- C is 2^N, N1 is N-1, potenciasAUX(N1,J), L = [C|J].
 
 % 7 - Defina um predicado positivos(L1,L2), de forma que L2 seja uma lista só com os elementos positivos de L1
 
-%positivos([],[]).
-%positivos(L1,L2) :- L1 = [H1|T1], H1 > 0,
+positivos([],[]).
+positivos([H|T],L2) :- H > 0, positivos(T, Laux), L2 = [H|Laux].
+positivos([_|T],L2) :- positivos(T, Laux), L2 = Laux.
 
 % 8 - Considere que L1 e L2 sejam permutações de uma lista de elementos distintos, sem repetições.
 %     Sabendo disso, defina um predicado mesmaPosicao(A,L1,L2) para verificar se um elemento A está
