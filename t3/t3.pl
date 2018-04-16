@@ -10,8 +10,7 @@ has5(L) :- L = [_,_,_,_,_].
 
 % 3 - Defina um predicado hasN(L,N) que é verdadeiro se L for uma lista de N elementos.
 
-%hasN([_],1).
-%hasN(L,N) :- N1 is N-1, hasN(J,N1), L = [_|J].
+hasN(L,N) :- length(L,N).
 
 % 4 - Defina um predicado potN0(N,L), de forma que L seja uma lista de potências de 2, com expoentes de N a 0.
 
@@ -38,3 +37,7 @@ potenciasAUX(N,L) :- C is 2^N, N1 is N-1, potenciasAUX(N1,J), L = [C|J].
 
 %positivos([],[]).
 %positivos(L1,L2) :- L1 = [H1|T1], H1 > 0,
+
+% 8 - Considere que L1 e L2 sejam permutações de uma lista de elementos distintos, sem repetições.
+%     Sabendo disso, defina um predicado mesmaPosicao(A,L1,L2) para verificar se um elemento A está
+%     na mesma posição nas listas L1 e L2.
