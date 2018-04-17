@@ -45,3 +45,13 @@ positivos([_|T],L2) :- positivos(T, Laux), L2 = Laux.
 
 mesmaPosicao(A,[A|_],[A|_]) :- !.
 mesmaPosicao(A,[_|T1],[_|T2]) :- mesmaPosicao(A, T1, T2).
+
+% 9 - Dada uma lista de N alunos, deseja-se escolher NP alunos (NP < N) para formar uma comissão.
+%     Para isso, defina um predicado comissao(NP,LP,C), que permita gerar as possíveis combinações
+%     C com NP elementos da lista LP.
+
+% 10 - Você deverá definir um predicado azulejos(NA, NQ), de forma que NQ seja o número de quadrados
+%      que se deve montar com NA azulejos.
+
+azulejos(0,0) :- !.
+azulejos(NA,NQ) :- sqrt(NA,TAM), floor(TAM,TAM1), TAM2 is NA-TAM1^2, azulejos(TAM2, NQ1), NQ is NQ1+1.
