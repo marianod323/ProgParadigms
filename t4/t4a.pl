@@ -22,14 +22,14 @@ regra2(C) :-
     nth0(Iw, C, w),
     Iw < 3,
     nth0(Is, C, y),
-    Is < 3.
+    Is < 3, !.
 
 regra3(C) :-
     nth0(Iw, C, w),
     nth0(It, C, t),
-    It < Iw.
+    It < Iw, !.
 
-regra5([A,B], I) :-
+regra5([_,B], I) :-
     L is I+1,
     autoral(L, B).
 
@@ -39,7 +39,7 @@ regra5([A,B], I) :-
     autoral(I, A).
 
 regra5(C,I) :-
-    C = [H|T],
+    C = [_|T],
     T = [H2|_],
     L is I+1,
     autoral(L, H2),
@@ -53,3 +53,19 @@ regra5(C,I) :-
     sucessoRock(L, H2),
     autoral(I, H),
     regra5(T,L).
+
+cdIndependente(C) :-
+    regra1(C),
+    regra2(C),
+    regra3(C),
+    regra5(C,0).
+
+% Questão 11. Qual das seguintes alternativas poderia
+% ser a ordem das músicas no CD, da primeira
+% para a sétima faixa?
+%
+% ?- cdIndependente([t,w,v,s,y,x,z]).
+% ?- cdIndependente([v,y,t,s,w,z,x]).
+% ?- cdIndependente([x,y,w,s,t,z,s]).
+% ?- cdIndependente([y,t,w,s,x,z,v]).
+% ?- cdIndependente([z,t,x,w,v,y,s]).
