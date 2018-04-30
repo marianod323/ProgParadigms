@@ -60,6 +60,14 @@ cdIndependente(C) :-
 % ser a ordem das músicas no CD, da primeira
 % para a sétima faixa?
 %
+% (A) T, W, V, S, Y, X, Z
+% (B) V, Y, T, S, W, Z, X
+% (C) X, Y, W, S, T, Z, S
+% (D) Y, T, W, S, X, Z, V
+% (E) Z, T, X, W, V, Y, S
+%
+% Consultas:
+%
 % ?- cdIndependente([t,w,v,s,y,x,z]).
 % ?- cdIndependente([v,y,t,s,w,z,x]).
 % ?- cdIndependente([x,y,w,s,t,z,s]).

@@ -40,6 +40,14 @@ playlist(C) :-
 % uma possível lista completa e correta dos estilos
 % executados, do primeiro para o último?
 %
+% (A) funk, samba, rock, pop, hip-hop, jazz
+% (B) hip-hop, samba, jazz, pop, funk, rock
+% (C) rock, samba, funk, hip-hop, jazz, pop
+% (D) pop, rock, jazz, funk, hip-hop, samba
+% (E) jazz, samba, hip-hop, funk, pop, rock
+%
+% Consultas:
+%
 % ?- playlist([funk, samba, rock, pop, hip-hop, jazz]).
 % ?- playlist([hip-hop, samba, jazz, pop, funk, rock]).
 % ?- playlist([rock, samba, funk, hip-hop, jazz, pop]).
