@@ -33,9 +33,7 @@ regra5([_,B], I) :-
     L is I+1,
     autoral(L, B).
 
-regra5([A,B], I) :-
-    L is I+1,
-    sucessoRock(L, B),
+regra5([A,_], I) :-
     autoral(I, A).
 
 regra5(C,I) :-
@@ -48,10 +46,8 @@ regra5(C,I) :-
 
 regra5(C,I) :-
     C = [H|T],
-    T = [H2|_],
-    L is I+1,
-    sucessoRock(L, H2),
     autoral(I, H),
+    L is I + 1,
     regra5(T,L).
 
 cdIndependente(C) :-
