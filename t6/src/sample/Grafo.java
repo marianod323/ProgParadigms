@@ -1,14 +1,19 @@
 package sample;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 public class Grafo{
@@ -17,7 +22,7 @@ public class Grafo{
   private ArrayList<Aresta> listAresta;
   private Pane pane;
 
-  public Grafo (Pane pane){
+  public Grafo (Pane pane, Button voltar){
     this.pane = pane;
     this.listVertice = new ArrayList<Vertice>();
     this.listAresta = new ArrayList<Aresta>();
@@ -52,7 +57,17 @@ public class Grafo{
     saiClick = new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent event) {
-
+        if (grafoPlanar()){
+          VBox menuVitoria = new VBox();
+          pane.getChildren().clear();
+          Label vitoria = new Label("Parabéns, você venceu!");
+          vitoria.setFont(new Font(80));
+          vitoria.setAlignment(Pos.CENTER);
+          menuVitoria.getChildren().addAll(vitoria, voltar);
+          menuVitoria.setSpacing(25);
+          menuVitoria.setAlignment(Pos.CENTER);
+          pane.getChildren().add(menuVitoria);
+        }
       }
     };
   }
@@ -110,12 +125,25 @@ public class Grafo{
   }
 
   public boolean grafoPlanar (){
-    Label interseccoes = new Label("Quantidade de intersecções: ");
-    for(Node n:pane.getChildren()){
-      //for each com linhas dnv
-      if(n instanceof Line){
-        Line l = (Line) n;
-        //Line2D.linesIntersect(l.getX(), l.getY(), l.getX(), l.getY(), p3.getX(), p3.getY(), p4.getX(), p4.getY())
+    for(Node n1:pane.getChildren()){
+      if (n1 instanceof Line){
+        for(Node n2:pane.getChildren()){
+          if (n2 instanceof Line){
+            Line l1 = (Line) n1;
+            Line l2 = (Line) n2;
+            if ((l1.getStartX() == l2.getStartX() && l1.getStartY() == l2.getStartY()) ||
+                (l1.getStartX() == l2.getEndX() && l1.getStartY() == l2.getEndY()) ||
+                (l1.getEndX() == l2.getStartX() && l1.getEndY() == l2.getStartY()) ||
+                (l1.getEndX() == l2.getEndX() && l1.getEndY() == l2.getEndY())){
+            }
+            else{
+              if (Line2D.linesIntersect(l1.getStartX(), l1.getStartY(), l1.getEndX(), l1.getEndY(),
+                  l2.getStartX(), l2.getStartY(), l2.getEndX(), l2.getEndY())){
+                return false;
+              }
+            }
+          }
+        }
       }
     }
     return true;

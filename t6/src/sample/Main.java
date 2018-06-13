@@ -18,12 +18,13 @@ public class Main extends Application {
 
     private boolean iniciarJogo = false;
     private int qntVertices = 8;
+    private Pane drawPane = new Pane();
+    Button voltar = new Button("Voltar");
+    private Grafo grafo = new Grafo(drawPane,voltar);
 
     @Override public void start(Stage stage) throws Exception{
         BorderPane mainPane = new BorderPane();
-        Pane drawPane = new Pane();
         VBox menu = new VBox();
-        Grafo grafo = new Grafo(drawPane);
         stage.setScene(new Scene(mainPane, 800, 600));
         Label nomeJogo = new Label("Planarity Puzzle");
         nomeJogo.setFont(new Font(60));
@@ -59,8 +60,19 @@ public class Main extends Application {
           @Override
           public void handle(ActionEvent event) {
             mainPane.getChildren().clear();
+            mainPane.setTop(voltar);
             mainPane.setCenter(drawPane);
             grafo.criaGrafo(qntVertices);
+          }
+        });
+
+        voltar.setOnAction(new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            mainPane.getChildren().clear();
+            drawPane.getChildren().clear();
+            grafo = new Grafo(drawPane, voltar);
+            mainPane.setCenter(menu);
           }
         });
 
