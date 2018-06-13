@@ -2,6 +2,7 @@ package sample;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -11,7 +12,7 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 
 public class Grafo{
-  private EventHandler<MouseEvent> iniciaClick, saiClick, moveAresta;
+  private EventHandler<MouseEvent> iniciaClick, saiClick;
   private ArrayList<Vertice> listVertice;
   private ArrayList<Aresta> listAresta;
   private Pane pane;
@@ -106,6 +107,18 @@ public class Grafo{
 
       pane.getChildren().add(circle);
     }
+  }
+
+  public boolean grafoPlanar (){
+    Label interseccoes = new Label("Quantidade de intersecções: ");
+    for(Node n:pane.getChildren()){
+      //for each com linhas dnv
+      if(n instanceof Line){
+        Line l = (Line) n;
+        //Line2D.linesIntersect(l.getX(), l.getY(), l.getX(), l.getY(), p3.getX(), p3.getY(), p4.getX(), p4.getY())
+      }
+    }
+    return true;
   }
 
 }
